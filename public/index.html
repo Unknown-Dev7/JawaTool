@@ -1,28 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>TikTok Downloader - JawaTool</title>
+  <meta charset="UTF-8">
+  <title>Jawatool TikTok Downloader</title>
 </head>
 <body>
-  <h1>Download Video TikTok</h1>
-  <input type="text" id="tiktok-url" placeholder="Tempel URL TikTok">
+  <h1>Download TikTok Video Tanpa Watermark</h1>
+  <input type="text" id="url" placeholder="Tempel link TikTok">
   <button onclick="download()">Download</button>
-  <div id="result"></div>
+  <pre id="result"></pre>
 
   <script>
     async function download() {
-      const url = document.getElementById("tiktok-url").value;
-      const res = await fetch(`/api/ssstik?url=${encodeURIComponent(url)}`);
-      const data = await res.json();
-
-      if (data.videonowm) {
-        document.getElementById("result").innerHTML = `
-          <video controls width="300" src="${data.videonowm}"></video>
-          <br><a href="${data.videonowm}" download>Download Now</a>
-        `;
-      } else {
-        document.getElementById("result").innerText = "Gagal Mendownload";
-      }
+      const url = document.getElementById('url').value
+      const res = await fetch(`/api/ssstik?url=${encodeURIComponent(url)}`)
+      const data = await res.json()
+      document.getElementById('result').textContent = JSON.stringify(data, null, 2)
     }
   </script>
 </body>
